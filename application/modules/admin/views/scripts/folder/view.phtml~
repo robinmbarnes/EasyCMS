@@ -1,0 +1,47 @@
+<!--  start product-table ..................................................................................... -->
+<h1>TODO:</h1>
+<ol>
+    <li>Create forms CSS file, include it</li>
+    <li>Create nice css form forms</li>
+</ol>
+
+<form id="mainform" action="">
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+<tr>
+	<th class="table-header-repeat line-left minwidth-1">&nbsp;</th>
+	<th class="table-header-repeat line-left minwidth-1"><a href="">Title</a></th>
+	<th class="table-header-options line-left"><a href="">Options</a></th>
+</tr>
+<ul class="folder-actions">
+    <li class="add"><a href="<?=$this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder');?>">Add new folder</a></li>
+    <li class="add"><a href="#">Add new file</a></li>
+</ul>
+
+<?php foreach($this->folder->getSubFolders() as $subFolder):?>
+<tr class="alternate-row">
+	<td>Folder</td>
+	<td><?= $subFolder->getName(); ?></td>
+	<td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
+</tr>
+<?php endforeach; ?>
+
+<?php foreach($this->folder->getPages() as $page):?>
+<tr class="alternate-row">
+	<td>Page</td>
+	<td><?= $page->getName(); ?></td>
+	<td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
+</tr>
+<?php endforeach; ?>
+
+</table>
+<!--  end product-table................................... --> 
+
+<ul class="folder-actions">
+    <li class="add"><a href="<?=$this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder');?>">Add new folder</a></li>
+    <li class="add"><a href="#">Add new file</a></li>
+</ul>
+
+</form>
+</div>
+<!--  end content-table  -->
+

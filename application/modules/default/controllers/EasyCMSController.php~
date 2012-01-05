@@ -1,0 +1,9 @@
+<?php
+
+class EasyCMSController extends Zend_Controller_Action
+{
+    protected function getDb()
+    {
+        return Zend_Registry::get('db');
+    }
+}

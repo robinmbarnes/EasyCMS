@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * Default Layout
+ *  
+ * @author
+ * @version
+ */
+
+echo '<?xml version="1.0" encoding="UTF-8" ?>';
+echo $this->doctype() 
+?>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<?php 
+		$this->headLink()->appendStylesheet('/styles/layout.css');
+		$this->headScript()->appendFile('/scripts/jquery.js', 'text/javascript');
+		echo $this->headTitle();
+		echo $this->headLink();
+	    echo $this->headScript();
+	    echo $this->headStyle(); 
+	    ?>
+	</head>
+	<body>
+		<div id=outer-container">
+			<div id="logo">
+				<h1>Stressless Dating</h1>
+			</div><!-- #logo -->
+			<div id="main-navigation">
+				<ul>
+					<li><a href="#" title="Search for restaurants">Search</a></li>
+					<li><a href="#" title="Tell the world what you think about New York&apos;s restaurants">Rants / Raves</a></li>
+					<li><a href="/my-little-black-book" title="List the details of all the people you&apos;ve dated here">My Little Black Book</a></li>
+				</ul>
+			</div><!-- #main-navigation -->
+			<div id="login-status">
+				<?php if($this->currentUser): ?>
+					<p>Welcome back <?php echo $this->currentUser->getUserName(); ?>. <a href="/logout">Logout</a></p>
+				<?php else: ?>
+					<p>You are not logged in. <a href="/login">Login now</a></p>
+				<?php endif; ?>
+			</div><!-- #login-status -->
+			<div id="main-content">
+				<?php echo $this->layout()->content ?>
+			</div><!-- #main-content -->
+			<div id="footer">
+			<p>Copyright goes here.</p>
+			</div><!-- #footer -->
+		</div><!-- #outer-container -->
+
+	</body>
+</html>

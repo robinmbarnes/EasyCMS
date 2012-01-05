@@ -1,0 +1,9 @@
+<?php
+
+class Foo_Controller_Bar extends Zend_Controller_Action
+{
+    protected function getDb()
+    {
+        return Zend_Registry::get('**application_db_connection**');
+    }
+}
