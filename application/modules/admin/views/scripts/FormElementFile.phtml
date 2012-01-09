@@ -1,0 +1,18 @@
+<div class="form-element form-element-file">
+    <div class="form-label-wrapper">
+        <label for="<?=$this->element->getId();?>"><?= $this->element->getLabel(); ?><?=($this->element->isRequired() ? '*' : ''); ?>:</label>
+    </div>
+    <div class="form-element-wrapper form-element-wrapper-file">
+        <div class="faux-file-field">
+            <?= $this->content; ?>
+        </div>
+    </div>
+    <?php if ($this->element->hasErrors()): ?>
+        <div class="errors"><?= $this->formErrors($this->element->getMessages()); ?></div>
+    <?php elseif (0 < strlen($this->element->getDescription())): ?>
+        <div class="description">
+            <div class="description-inner"><?php echo $this->element->getDescription(); ?></div>
+        </div>
+    <?php endif; ?>
+    <div class="clear"></div>
+</div>
