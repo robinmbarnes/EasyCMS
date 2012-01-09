@@ -14,6 +14,7 @@ class Admin_Form_CreateTemplate extends Zend_Form
             ->setLabel('Name')
             ->setAttrib('placeholder', 'New Template')
             ->setRequired(true)
+                ->SetDescription('File containing the markup for your new template')
             ->addValidators(
                 array(
                      new Zend_Validate_StringLength(array('min' => 1, 'max' => 255)),
@@ -39,6 +40,7 @@ class Admin_Form_CreateTemplate extends Zend_Form
             ->setLabel('Template file')
 		    ->setRequired(true)
             ->setDisableLoadDefaultDecorators(true)
+            ->SetDescription('File containing the markup for your new template')
         ;
 
         $submit = new Zend_Form_Element_Submit('submit');
@@ -46,14 +48,11 @@ class Admin_Form_CreateTemplate extends Zend_Form
             ->setValue('Create template')
             ->setLabel('');
 
-        $this->addElement($name);
-        $this->addElement($description);
-        $this->addElement($content);
-        $this->addElement($submit);
+        $this->addElements(array($name, $description, $content, $submit));
 
         $this->addElementPrefixPath('EasyCMS_Form_Decorator','EasyCMS/Form/Decorator','decorator');
         $this->addDisplayGroupPrefixPath('EasyCMS_Form_Decorator', 'EasyCMS/Form/Decorator');
         $this->setElementDecorators(array('Composite'));
-        $content->addDecorators(array('File'));
+        $content->addDecorators(array('File', array('ViewScript', array('viewScript' => 'FormElementFile.phtml', 'placement' => false))));
     }
 }

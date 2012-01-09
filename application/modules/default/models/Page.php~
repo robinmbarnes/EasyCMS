@@ -70,5 +70,13 @@ class App_Model_Page
         $this->sections[] = $section;
     }
 
+    public function setSections(array $sections)
+    {
+        $this->sections->clear();
+        foreach($sections as $section)
+        {
+            $this->addToSections($section);
+        }
+    }
 }
 

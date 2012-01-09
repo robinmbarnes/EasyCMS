@@ -3,15 +3,15 @@
 class App_Model_TemplateParser
 {
     protected $raw_text;
-    protected $sections = array();
 
     public function __construct($raw_text)
     {
-        $this->raw_text = file_get_contents($raw_text);
+        $this->raw_text = $raw_text;
     }
 
     public function parse()
     {
+        $sections = array();
         $matches = array();
         preg_match_all('|<easy_cms_section.*?</easy_cms_section>|', $this->raw_text, $matches);
         foreach($matches as $section_tag)
@@ -30,13 +30,32 @@ class App_Model_TemplateParser
                 throw new App_Model_TemplateParserException('Section name: ' . $section->getName() . ' is not unique');
             }            
 
-            $this->sections[] = $section;
+            $sections[] = $section;
         } 
+        return $sections;
     }
 
-    public function getSections()
+    public function render(\Doctrine\Common\Collections\ArrayCollection $sections)
     {
-        return $this->sections;
+        $text = $this->raw_text;
+        foreach($sections as $section)
+        {
+            if(!preg_match('|<easy_cms_section name="'.$section->getName().'">(.+?)</easy_cms_section>|', $text))
+            {
+                throw new App_Model_TemplateParserException('Section tag for section: ' . $section->getName() . ' not found');
+            }
+            $css_id_name = preg_replace('/[^0-9a-zA-Z]/', '-', $section->getName());    
+            $text = preg_replace(
+                '|<easy_cms_section name="'.$section->getName().'">(.+?)</easy_cms_section>|',            
+                '<div id="easy_cms_section_'.$css_id_name.'">'.$section->getContent().'</div>',
+                $text
+            );
+        }
+        if(preg_match('|<easy_cms_section name="(.+?)">(.+?)</easy_cms_section>|', $text))
+        {
+            throw new App_Model_TemplateParserException('Missing section content');
+        }
+        echo $text;
     }
 
     public function isSectionNameUnique(App_Model_Section $section)

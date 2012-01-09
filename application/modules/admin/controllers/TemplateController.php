@@ -20,9 +20,16 @@ class Admin_TemplateController extends EasyCMS_Controller_Action
         }
         if($form->isValid($this->getRequest()->getPost()))
         {
-            $template = new App_Model_Folder();
+            $template = new App_Model_Template();
             $template->setName($form->name->getValue());
             $template->setDescription($form->description->getValue());
+            if(!$form->content->receive())
+            {
+                $form->content->addError('There was an error processing the file');
+                return;
+            }
+            $template->setContent(file_get_contents($form->content->getFileName()));
+            unlink($form->content->getFileName());
             try
             {
                 $this->getDb()->persist($template);
@@ -33,7 +40,7 @@ class Admin_TemplateController extends EasyCMS_Controller_Action
                 $dbException = new App_Model_DBExceptionDecorator($e);
                 if($dbException->isDuplicateKeyViolation())
                 {
-                    $form->name->addFlashMessageError('A template with this name already exists');
+                    $form->name->addError('A template with this name already exists');
                     return;
                 }
             }

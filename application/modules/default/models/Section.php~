@@ -56,4 +56,14 @@ class App_Model_Section
     {
         $this->description = $description;
     }
+
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    public function setPage(App_Model_Page $page)
+    {
+        $this->page = $page;
+    }
 }

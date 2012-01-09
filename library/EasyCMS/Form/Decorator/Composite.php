@@ -69,6 +69,10 @@ class EasyCMS_Form_Decorator_Composite extends Zend_Form_Decorator_Abstract
     public function render($content)
     {
         $element = $this->getElement();
+        if($element instanceof Zend_Form_Element_File)
+        {
+            return $content;
+        }
         if(!$element instanceof Zend_Form_Element) 
         {
             return $content;

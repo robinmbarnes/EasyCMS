@@ -39,6 +39,7 @@ class Admin_Form_CreateTemplate extends Zend_Form
             ->setLabel('Template file')
 		    ->setRequired(true)
             ->setDisableLoadDefaultDecorators(true)
+            ->SetDescription('File containing the markup for your new template')
         ;
 
         $submit = new Zend_Form_Element_Submit('submit');
@@ -51,6 +52,6 @@ class Admin_Form_CreateTemplate extends Zend_Form
         $this->addElementPrefixPath('EasyCMS_Form_Decorator','EasyCMS/Form/Decorator','decorator');
         $this->addDisplayGroupPrefixPath('EasyCMS_Form_Decorator', 'EasyCMS/Form/Decorator');
         $this->setElementDecorators(array('Composite'));
-        $content->addDecorators(array('File'));
+        $content->addDecorators(array('File', array('ViewScript', array('viewScript' => 'FormElementFile.phtml', 'placement' => false))));
     }
 }

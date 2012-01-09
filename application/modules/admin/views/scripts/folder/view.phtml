@@ -26,6 +26,14 @@
 </tr>
 <?php endforeach; ?>
 
+<?php foreach($this->folder->getFiles() as $file):?>
+<tr class="alternate-row">
+	<td>File</td>
+	<td><?= $file->getName(); ?></td>
+	<td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
+</tr>
+<?php endforeach; ?>
+
 </table>
 
 <ul class="folder-actions">

@@ -28,6 +28,11 @@ class App_Model_Folder
     private $pages;
 
     /**
+    * @OneToMany(targetEntity="App_Model_File", mappedBy="folder")
+    */
+    private $files;
+
+    /**
     * @Column(type="integer")
     */    
     private $parent_id;
@@ -42,6 +47,7 @@ class App_Model_Folder
     {
         $this->subFolders = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->files = new \Doctrine\Common\Collections\ArrayCollection(1);
     }
 
     public function getId()
@@ -69,7 +75,22 @@ class App_Model_Folder
         $this->subFolders[] = $folder;
     }
 
+    public function addToPages(App_Model_Page $page)
+    {
+        $this->pages[] = $page;
+    }
+
     public function getPages()
+    {
+        return $this->pages;
+    }
+
+    public function addToFiles(App_Model_File $file)
+    {
+        $this->files[] = $files;
+    }
+
+    public function getFiles()
     {
         return $this->pages;
     }

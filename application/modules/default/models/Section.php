@@ -66,4 +66,19 @@ class App_Model_Section
     {
         $this->page = $page;
     }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+    
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    public function render()
+    {
+        echo $this->getContent();
+    }
 }

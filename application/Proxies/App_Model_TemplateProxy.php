@@ -42,10 +42,46 @@ class App_Model_TemplateProxy extends \App_Model_Template implements \Doctrine\O
         return parent::getPages();
     }
 
+    public function getName()
+    {
+        $this->__load();
+        return parent::getName();
+    }
+
+    public function setName($name)
+    {
+        $this->__load();
+        return parent::setName($name);
+    }
+
+    public function getDescription()
+    {
+        $this->__load();
+        return parent::getDescription();
+    }
+
+    public function setDescription($description)
+    {
+        $this->__load();
+        return parent::setDescription($description);
+    }
+
+    public function getContent()
+    {
+        $this->__load();
+        return parent::getContent();
+    }
+
+    public function setContent($content)
+    {
+        $this->__load();
+        return parent::setContent($content);
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'name', 'description', 'pages');
+        return array('__isInitialized__', 'id', 'name', 'description', 'pages', 'content');
     }
 
     public function __clone()

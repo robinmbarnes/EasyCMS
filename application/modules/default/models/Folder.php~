@@ -64,6 +64,11 @@ class App_Model_Folder
         return $this->subFolders;
     }
 
+    public function addToSubFolders(App_Model_Folder $folder)
+    {
+        $this->subFolders[] = $folder;
+    }
+
     public function getPages()
     {
         return $this->pages;

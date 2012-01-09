@@ -78,5 +78,12 @@ class App_Model_Page
             $this->addToSections($section);
         }
     }
+
+    public function render()
+    {
+        ob_start();
+
+        return ob_get_clean();
+    }
 }
 
