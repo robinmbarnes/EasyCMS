@@ -16,7 +16,7 @@ class Admin_Form_CreateFolder extends Zend_Form
             ->addValidators(
                 array(
                      new Zend_Validate_StringLength(array('min' => 1, 'max' => 255)),
-                     new Zend_Validate_Alnum(),
+                     new EasyCMS_Validate_Filepathname(),
                 )
             )
         ;

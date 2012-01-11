@@ -47,7 +47,7 @@ class App_Model_Folder
     {
         $this->subFolders = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pages = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->files = new \Doctrine\Common\Collections\ArrayCollection(1);
+        $this->files = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId()
@@ -92,7 +92,7 @@ class App_Model_Folder
 
     public function getFiles()
     {
-        return $this->pages;
+        return $this->files;
     }
 
     public function getParent()

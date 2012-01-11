@@ -26,8 +26,7 @@ class Admin_Form_CreateFolder extends Zend_Form
             ->setValue('Create folder')
             ->setLabel('');
 
-        $this->addElement($name);
-        $this->addElement($submit);
+        $this->addElements(array($name, $submit));
 
         $this->addElementPrefixPath('EasyCMS_Form_Decorator','EasyCMS/Form/Decorator','decorator');
         $this->addDisplayGroupPrefixPath('EasyCMS_Form_Decorator', 'EasyCMS/Form/Decorator');

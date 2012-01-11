@@ -66,10 +66,28 @@ class App_Model_FolderProxy extends \App_Model_Folder implements \Doctrine\ORM\P
         return parent::addToSubFolders($folder);
     }
 
+    public function addToPages(\App_Model_Page $page)
+    {
+        $this->__load();
+        return parent::addToPages($page);
+    }
+
     public function getPages()
     {
         $this->__load();
         return parent::getPages();
+    }
+
+    public function addToFiles(\App_Model_File $file)
+    {
+        $this->__load();
+        return parent::addToFiles($file);
+    }
+
+    public function getFiles()
+    {
+        $this->__load();
+        return parent::getFiles();
     }
 
     public function getParent()
@@ -87,7 +105,7 @@ class App_Model_FolderProxy extends \App_Model_Folder implements \Doctrine\ORM\P
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'name', 'subFolders', 'pages', 'parent_id', 'parent');
+        return array('__isInitialized__', 'id', 'name', 'subFolders', 'pages', 'files', 'parent_id', 'parent');
     }
 
     public function __clone()

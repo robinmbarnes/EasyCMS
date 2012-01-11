@@ -52,7 +52,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         $this->setupRoutes($front);
 
-        Zend_Registry::set('template_upload_path', $this->getApplication()->getOption('template_upload_path'));
+        Zend_Registry::set('media_path', $this->getApplication()->getOption('media_path'));
 
         parent::run();
     }
@@ -118,7 +118,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $route = new Zend_Controller_Router_Route('/admin/template', array('module'=>'admin', 'controller' => 'template', 'action' => 'viewAll'));
         $router->addRoute('admin_view_templates', $route);        
         $route = new Zend_Controller_Router_Route('/admin/template/create', array('module'=>'admin', 'controller' => 'template', 'action' => 'create'));
-        $router->addRoute('admin_create_template', $route);        
+        $router->addRoute('admin_create_template', $route); 
+
+        //File
+        $route = new Zend_Controller_Router_Route('/admin/foler/:folder_id/file/create', array('module'=>'admin', 'controller' => 'file', 'action' => 'create'));
+        $router->addRoute('admin_create_file', $route);                       
     }
     
     private function initView()
