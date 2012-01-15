@@ -52,7 +52,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         $this->setupRoutes($front);
 
-        Zend_Registry::set('template_upload_path', $this->getApplication()->getOption('template_upload_path'));
+        Zend_Registry::set('media_path', $this->getApplication()->getOption('media_path'));
 
         parent::run();
     }

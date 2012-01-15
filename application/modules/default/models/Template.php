@@ -37,6 +37,11 @@ class App_Model_Template
         $this->pages = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getPages()
     {
         return $this->pages;

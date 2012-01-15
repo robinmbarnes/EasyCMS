@@ -2,19 +2,25 @@
 
 class App_Model_TemplateParser
 {
-    protected $raw_text;
+    protected $template;
 
-    public function __construct($raw_text)
+    public function __construct(App_Model_Template $template)
     {
-        $this->raw_text = $raw_text;
+        $this->template = $template;
     }
 
-    public function parse()
+    public function getTemplate()
+    {
+        return $this->template;
+    }
+
+    public function generateSections()
     {
         $sections = array();
         $matches = array();
-        preg_match_all('|<easy_cms_section.*?</easy_cms_section>|', $this->raw_text, $matches);
-        foreach($matches as $section_tag)
+        preg_match_all('|<easy_cms_section.*?</easy_cms_section>|', $this->template->getContent(), $matches);
+        $section_matches = (isset($matches[0]) ? $matches[0] : array());
+        foreach($section_matches as $section_tag_array)
         {
             $inner_matches = array();
             if(!preg_match('|<easy_cms_section name="(.+?)">(.+?)</easy_cms_section>|', $section_tag, $inner_matches))
@@ -37,7 +43,7 @@ class App_Model_TemplateParser
 
     public function render(\Doctrine\Common\Collections\ArrayCollection $sections)
     {
-        $text = $this->raw_text;
+        $text = $this->template->getContent();
         foreach($sections as $section)
         {
             if(!preg_match('|<easy_cms_section name="'.$section->getName().'">(.+?)</easy_cms_section>|', $text))
@@ -55,6 +61,7 @@ class App_Model_TemplateParser
         {
             throw new App_Model_TemplateParserException('Missing section content');
         }
+        echo $text;
     }
 
     public function isSectionNameUnique(App_Model_Section $section)

@@ -26,9 +26,20 @@ div.form-element-wrapper input[type="text"]
     background-image: url('/admin/images/template/forms/form_inp.gif');
     border: none;
     color: #393939;
-    height: 25px;
+    line-height: 25px;
     padding: 6px 6px 0px;
     width: 186px;
+}
+
+div.form-element-wrapper select
+{
+    color: #393939;
+    height: 30px;
+    padding: 3px 6px 0 6px;
+    vertical-align: middle;
+    width: 198px;
+    border: 1px solid #ACACAC;
+    float: left;
 }
 
 div.form-element-wrapper input.file

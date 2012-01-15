@@ -2,6 +2,14 @@
 class Admin_Form_CreatePage extends Zend_Form
 {
 
+    private $templates = array();
+
+    public function __construct(array $templates)
+    {
+        $this->templates = $templates;
+        parent::__construct();
+    }
+
     public function init()
     {
         $this->setMethod('post');
@@ -10,7 +18,8 @@ class Admin_Form_CreatePage extends Zend_Form
         
         $name = new Zend_Form_Element_Text('name');
         $name
-            ->setAttrib('placeholder', 'Folder name')
+            ->setAttrib('placeholder', 'New webpage')
+            ->setLabel('Webpage name')
             ->setRequired(true)
             ->addValidators(
                 array(
@@ -20,13 +29,28 @@ class Admin_Form_CreatePage extends Zend_Form
             )
         ;
 
+        $template = new Zend_Form_Element_Select('template');
+        $template
+            ->setLabel('Select template')
+            ->setRequired(true)
+            ->addMultiOption('', 'Please select a template')
+        ;
+
+        foreach($this->templates as $t)
+        {
+            $template->addMultiOption($t->getId(), $t->getName());    
+        }
+
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Create folder');
+        $submit
+            ->setLabel('')
+            ->setValue('Create webpage')
+        ;
 
-        /*$this->addElementPrefixPath('Std_Decorator','Std/Decorator/','decorator');
-        $name->setDecorators(array('Composite'));*/
+        $this->addElements(array($name, $template, $submit));
 
-        $this->addElement($name);
-        $this->addElement($submit);
+        $this->addElementPrefixPath('EasyCMS_Form_Decorator','EasyCMS/Form/Decorator','decorator');
+        $this->addDisplayGroupPrefixPath('EasyCMS_Form_Decorator', 'EasyCMS/Form/Decorator');
+        $this->setElementDecorators(array('Composite'));
     }
 }

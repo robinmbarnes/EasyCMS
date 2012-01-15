@@ -31,7 +31,7 @@ class App_Model_Page
     private $template;
 
     /**
-    * @OneToMany(targetEntity="App_Model_Section", mappedBy="page")
+    * @OneToMany(targetEntity="App_Model_Section", mappedBy="page", cascade={"persist"})
     */
     private $sections;
 
@@ -50,6 +50,11 @@ class App_Model_Page
         return $this->name;
     }
 
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
     public function getSections()
     {
         return $this->sections;
@@ -60,9 +65,23 @@ class App_Model_Page
         return $this->folder;
     }
 
+    public function setFolder(App_Model_Folder $folder)
+    {
+        $this->folder = $folder;
+    }
+
     public function getTemplate()
     {
         return $this->template;
+    }
+
+    public function setTemplate(App_Model_Template $template)
+    {
+        if($this->template)
+        {
+            throw new Exception('A webpage\'s template cannot be changed');
+        }
+        $this->template = $template;
     }
 
     public function addToSections(App_Model_Section $section)
@@ -75,6 +94,7 @@ class App_Model_Page
         $this->sections->clear();
         foreach($sections as $section)
         {
+            $section->setPage($this);
             $this->addToSections($section);
         }
     }

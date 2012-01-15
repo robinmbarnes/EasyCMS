@@ -36,6 +36,12 @@ class App_Model_TemplateProxy extends \App_Model_Template implements \Doctrine\O
     }
     
     
+    public function getId()
+    {
+        $this->__load();
+        return parent::getId();
+    }
+
     public function getPages()
     {
         $this->__load();

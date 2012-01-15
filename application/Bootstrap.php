@@ -123,6 +123,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         //File
         $route = new Zend_Controller_Router_Route('/admin/foler/:folder_id/file/create', array('module'=>'admin', 'controller' => 'file', 'action' => 'create'));
         $router->addRoute('admin_create_file', $route);                       
+
+        //File
+        $route = new Zend_Controller_Router_Route('/admin/foler/:folder_id/page/create', array('module'=>'admin', 'controller' => 'page', 'action' => 'create'));
+        $router->addRoute('admin_create_page', $route);                       
     }
     
     private function initView()

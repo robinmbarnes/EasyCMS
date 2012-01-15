@@ -27,6 +27,11 @@ class App_Model_Template
     */
     private $pages;
 
+    /**
+    * @Column(type="text")
+    */
+    private $content;
+
     public function __construct()
     {
         $this->pages = new \Doctrine\Common\Collections\ArrayCollection();
@@ -37,4 +42,33 @@ class App_Model_Template
         return $this->pages;
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
 }

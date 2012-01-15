@@ -8,7 +8,7 @@
 <ul class="folder-actions">
     <li class="add"><a href="<?=$this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder');?>">Add new folder</a></li>
     <li class="add"><a href="#">Add new webpage</a></li>
-    <li class="add"><a href="#">Add new media file</a></li>
+    <li class="add"><a href="<?=$this->url(array('folder_id' => $this->folder->getId()), 'admin_create_file');?>">Add new media file</a></li>
 </ul>
 
 <?php foreach($this->folder->getSubFolders() as $subFolder):?>
@@ -40,7 +40,7 @@
 <ul class="folder-actions">
     <li class="add"><a href="<?=$this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder');?>">Add new folder</a></li>
     <li class="add"><a href="#">Add new webpage</a></li>
-    <li class="add"><a href="#">Add new media file</a></li>
+    <li class="add"><a href="<?=$this->url(array('folder_id' => $this->folder->getId()), 'admin_create_file');?>">Add new media file</a></li>
 </ul>
 
 </form>
