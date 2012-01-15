@@ -1,0 +1,14 @@
+<script type="text/javascript">
+    $(document).ready(
+        function()
+        {
+            var templates = [];
+            <?php foreach($this->templates as $template): ?>
+                templates[<?= $template->getId(); ?>] = '<?= $template->getDescription(); ?>';
+
+            <?php endforeach; ?>
+            templateDescriptions($('#template'), templates);
+        }
+    );
+</script>
+<?= $this->form; ?>
