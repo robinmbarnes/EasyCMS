@@ -7,6 +7,8 @@
 class App_Model_Page
 {
 
+    private $db;
+
     /**
     * @Id @Column(type="integer")
     * @GeneratedValue
@@ -35,9 +37,15 @@ class App_Model_Page
     */
     private $sections;
 
-    public function __construct()
+    /**
+    * @OneToMany(targetEntity="App_Model_Log", mappedBy="page")
+    */
+    private $logEntries;
+
+    public function __construct(EntityManager $db)
     {
-        $this->sections = new \Doctrine\Common\Collections\ArrayCollection();        
+        $this->sections = new \Doctrine\Common\Collections\ArrayCollection(); 
+        $this->logEntries = new \Doctrine\Common\Collections\ArrayCollection();       
     }
 
     public function getId()
@@ -104,6 +112,14 @@ class App_Model_Page
         ob_start();
 
         return ob_get_clean();
+    }
+
+    public function logView()
+    {
+        $log_entry = new App_Model_Log();
+        $log_entry->setPage($this);
+        $db->persist($log_entry);
+        $db->flush();
     }
 }
 

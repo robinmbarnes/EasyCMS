@@ -200,31 +200,10 @@ echo $this->doctype()
 
 	<!-- start logo -->
 	<div id="logo">
-	<a href=""><img src="/admin/images/template/shared/logo.png" width="156" height="40" alt="" /></a>
+	<a href="<?= $this->url(array(), 'admin_index') ?>"><h1>EasyCMS</h1></a>
 	</div>
 	<!-- end logo -->
 	
-	<!--  start top-search -->
-	<div id="top-search">
-		<table border="0" cellpadding="0" cellspacing="0">
-		<tr>
-		<td><input type="text" value="Search" onblur="if (this.value=='') { this.value='Search'; }" onfocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" /></td>
-		<td>
-		<select  class="styledselect">
-			<option value=""> All</option>
-			<option value=""> Products</option>
-			<option value=""> Categories</option>
-			<option value="">Clients</option>
-			<option value="">News</option>
-		</select> 
-		</td>
-		<td>
-		<input type="image" src="/admin/images/template/shared/top_search_btn.gif"  />
-		</td>
-		</tr>
-		</table>
-	</div>
- 	<!--  end top-search -->
  	<div class="clear"></div>
 
 </div>
@@ -276,86 +255,29 @@ echo $this->doctype()
 		<!--  start nav -->
 		<div class="nav">
 		<div class="table">
-		
-		<ul class="select"><li><a href="#nogo"><b>Dashboard</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		<div class="select_sub">
-			<ul class="sub">
-				<li><a href="#nogo">Dashboard Details 1</a></li>
-				<li><a href="#nogo">Dashboard Details 2</a></li>
-				<li><a href="#nogo">Dashboard Details 3</a></li>
-			</ul>
-		</div>
-		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
-		</li>
-		</ul>
-		
-		<div class="nav-divider">&nbsp;</div>
-		                    
-		<ul class="current"><li><a href="#nogo"><b>Products</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		<div class="select_sub show">
-			<ul class="sub">
-				<li><a href="#nogo">View all products</a></li>
-				<li class="sub_show"><a href="#nogo">Add product</a></li>
-				<li><a href="#nogo">Delete products</a></li>
-			</ul>
-		</div>
-		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
-		</li>
-		</ul>
-		
-		<div class="nav-divider">&nbsp;</div>
-		
-		<ul class="select"><li><a href="#nogo"><b>Categories</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		<div class="select_sub">
-			<ul class="sub">
-				<li><a href="#nogo">Categories Details 1</a></li>
-				<li><a href="#nogo">Categories Details 2</a></li>
-				<li><a href="#nogo">Categories Details 3</a></li>
-			</ul>
-		</div>
-		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
-		</li>
-		</ul>
-		
-		<div class="nav-divider">&nbsp;</div>
-		
-		<ul class="select"><li><a href="#nogo"><b>Clients</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		<div class="select_sub">
-			<ul class="sub">
-				<li><a href="#nogo">Clients Details 1</a></li>
-				<li><a href="#nogo">Clients Details 2</a></li>
-				<li><a href="#nogo">Clients Details 3</a></li>
-			 
-			</ul>
-		</div>
-		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
-		</li>
-		</ul>
-		
-		<div class="nav-divider">&nbsp;</div>
-		
-		<ul class="select"><li><a href="#nogo"><b>News</b><!--[if IE 7]><!--></a><!--<![endif]-->
-		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		<div class="select_sub">
-			<ul class="sub">
-				<li><a href="#nogo">News details 1</a></li>
-				<li><a href="#nogo">News details 2</a></li>
-				<li><a href="#nogo">News details 3</a></li>
-			</ul>
-		</div>
-		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
-		</li>
-		</ul>
-		
+            <ul class="select">
+                <li>
+                    <a href="#nogo"><b>Dashboard</b></a>
+                </li>
+            </ul>
+            <div class="nav-divider">&nbsp;</div>
+            <ul class="select">
+                <li>
+                    <a href="#nogo"><b>Folders</b></a>
+                </li>
+            </ul>
+            <div class="nav-divider">&nbsp;</div>
+            <ul class="select">
+                <li>
+                    <a href="#nogo"><b>Users</b></a>
+                </li>
+            </ul>
+
 		<div class="clear"></div>
 		</div>
 		<div class="clear"></div>
 		</div>
-		<!--  start nav -->
+		<!--  end nav -->
 
 </div>
 <div class="clear"></div>
@@ -423,7 +345,7 @@ echo $this->doctype()
 	<!--  start footer-left -->
 	<div id="footer-left">
 	
-	Admin Skin &copy; Copyright Internet Dreams Ltd. <span id="spanYear"></span> <a href="">www.netdreams.co.uk</a>. All rights reserved.</div>
+	Admin Skin based on Net Dreams admin skin, but heavily modified. &copy; Copyright Internet Dreams Ltd. <span id="spanYear"></span> <a href="">www.netdreams.co.uk</a>. All rights reserved.</div>
 	<!--  end footer-left -->
 	<div class="clear">&nbsp;</div>
 </div>
