@@ -21,6 +21,7 @@ class App_Model_Log
 
     /**
     * @Column(type="datetime")
+    * @GeneratedValue
     */
     private $logged_timestamp;
 

@@ -26,6 +26,7 @@ class Admin_FolderController extends EasyCMS_Controller_Action
         {
             return $this->folderNotFound();
         }
+        $this->view->page_heading = 'Create A New Folder In ' . $folder->getName();
         $form = new Admin_Form_CreateFolder();
         $this->view->form = $form;
         if(!$this->getRequest()->isPost())

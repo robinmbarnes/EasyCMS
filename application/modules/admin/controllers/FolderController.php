@@ -3,11 +3,6 @@
 class Admin_FolderController extends EasyCMS_Controller_Action
 {
 
-    public function init()
-    {
-        /* Initialize action controller here */
-    }
-
     public function viewAction()//List contents (files and folders) of a folder
     {
         $folder = $this->getFolderFromParams();
