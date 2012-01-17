@@ -52,7 +52,7 @@ abstract class EasyCMS_Controller_Action extends Zend_Controller_Action
 
     public function logInUser($email, $password)
     {
-        $user = $this->getDb()->getRepository('App_Model_User')->findOneBy(array('email' => $email, 'password' => $password);
+        $user = $this->getDb()->getRepository('App_Model_User')->findOneBy(array('email' => $email, 'password' => $password));
         if($user)
         {
             self::$user = $user;

@@ -1,0 +1,30 @@
+<form id="mainform" action="">
+<ul class="folder-actions">
+    <li class="add"><a href="<?=$this->url(array(), 'admin_create_template');?>">Add new user</a></li>
+</ul>
+<?php if($this->users): ?>
+   
+    <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+        <tr>
+	        <th class="table-header-repeat line-left minwidth-1">Email</th>
+	        <th class="table-header-options line-left"><a href="">Options</a></th>
+        </tr>
+
+        <?php foreach($this->users as $user):?>
+        <tr class="alternate-row">
+	        <td><?= $template->getEmail(); ?></td>
+	        <td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+
+<?php else: ?>
+    <p>There are currently no users.</p>
+<?php endif; ?>
+
+<ul class="folder-actions">
+    <li class="add"><a href="<?=$this->url(array(), 'admin_create_template');?>">Add new user</a></li>
+</ul>
+
+</form>
+</div>

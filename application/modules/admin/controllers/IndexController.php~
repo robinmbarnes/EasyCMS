@@ -10,8 +10,7 @@ class Admin_IndexController extends EasyCMS_Controller_Action
 
     public function indexAction()//AKA Dashboard
     {
-        $folder = $this->getDb()->find('App_Model_Folder', 14);
-        die('Todo: setup routes');
+        $folder = $this->getDb()->find('App_Model_Folder', 14);;
     }
 
     public function viewFolderAction()//List contents (files and folders) of a folder

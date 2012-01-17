@@ -130,7 +130,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         //Setup
         $route = new Zend_Controller_Router_Route('/setup/site-config', array('module'=>'admin', 'controller' => 'setup', 'action' => 'siteConfig'));
-        $router->addRoute('admin_create_page', $route);                       
+        $router->addRoute('admin_setup_site_config', $route);                       
     }
     
     private function initView()

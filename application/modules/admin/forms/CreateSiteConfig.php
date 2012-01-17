@@ -1,5 +1,5 @@
 <?php
-class Admin_Form_CreateTemplate extends Zend_Form
+class Admin_Form_CreateSiteConfig extends Zend_Form
 {
 
     public function init()
@@ -23,14 +23,15 @@ class Admin_Form_CreateTemplate extends Zend_Form
         ;
 
         $url = new Zend_Form_Element_Text('url');
-        $name
+        $url
             ->setLabel('url')
-            ->setAttrib('placeholder', 'http://www.yourwebsite.com'),
+            ->setAttrib('placeholder', 'http://www.yourwebsite.com')
             ->setDescription('The url (web address) of the website')
             ->setRequired(true)
             ->addValidators(
                 array(
                      new Zend_Validate_StringLength(array('min' => 1, 'max' => 255)),
+                     new EasyCMS_Validate_Url(),
                 )
             )
         ;
