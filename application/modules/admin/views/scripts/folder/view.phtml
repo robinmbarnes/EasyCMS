@@ -6,15 +6,15 @@
 	<th class="table-header-options line-left"><a href="">Options</a></th>
 </tr>
 <ul class="folder-actions">
-    <li class="add"><a href="<?=$this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder');?>">Add new folder</a></li>
-    <li class="add"><a href="<?=$this->url(array('folder_id' => $this->folder->getId()), 'admin_create_page');?>">Add new webpage</a></li>
-    <li class="add"><a href="<?=$this->url(array('folder_id' => $this->folder->getId()), 'admin_create_file');?>">Add new media file</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder'));?>">Add new folder</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_page'));?>">Add new webpage</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_file'));?>">Add new media file</a></li>
 </ul>
 
 <?php foreach($this->folder->getSubFolders() as $subFolder):?>
 <tr class="alternate-row">
 	<td>Folder</td>
-	<td><?= $subFolder->getName(); ?></td>
+	<td><?= $this->escape($subFolder->getName()); ?></td>
 	<td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
 </tr>
 <?php endforeach; ?>
@@ -22,7 +22,7 @@
 <?php foreach($this->folder->getPages() as $page):?>
 <tr class="alternate-row">
 	<td>Page</td>
-	<td><?= $page->getName(); ?></td>
+	<td><?= $this->escape($page->getName()); ?></td>
 	<td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
 </tr>
 <?php endforeach; ?>
@@ -30,7 +30,7 @@
 <?php foreach($this->folder->getFiles() as $file):?>
 <tr class="alternate-row">
 	<td>File</td>
-	<td><?= $file->getName(); ?></td>
+	<td><?= $this->escape($file->getName()); ?></td>
 	<td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
 </tr>
 <?php endforeach; ?>
@@ -38,9 +38,9 @@
 </table>
 
 <ul class="folder-actions">
-    <li class="add"><a href="<?=$this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder');?>">Add new folder</a></li>
-    <li class="add"><a href="<?=$this->url(array('folder_id' => $this->folder->getId()), 'admin_create_page');?>">Add new webpage</a></li>
-    <li class="add"><a href="<?=$this->url(array('folder_id' => $this->folder->getId()), 'admin_create_file');?>">Add new media file</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder'));?>">Add new folder</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_page'));?>">Add new webpage</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_file'));?>">Add new media file</a></li>
 </ul>
 
 </form>

@@ -1,6 +1,6 @@
 <form id="mainform" action="">
 <ul class="folder-actions">
-    <li class="add"><a href="<?=$this->url(array(), 'admin_create_template');?>">Add new template</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array(), 'admin_create_template'));?>">Add new template</a></li>
 </ul>
 <?php if($this->templates): ?>
    
@@ -13,8 +13,8 @@
 
         <?php foreach($this->templates as $template):?>
         <tr class="alternate-row">
-	        <td><?= $template->getName(); ?></td>
-	        <td><?= $template->getDescription(); ?></td>
+	        <td><?= $this->escape($template->getName()); ?></td>
+	        <td><?= $this->escape($template->getDescription()); ?></td>
 	        <td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
         </tr>
         <?php endforeach; ?>
@@ -25,7 +25,7 @@
 <?php endif; ?>
 
 <ul class="folder-actions">
-    <li class="add"><a href="<?=$this->url(array(), 'admin_create_template');?>">Add new template</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array(), 'admin_create_template'));?>">Add new template</a></li>
 </ul>
 
 </form>

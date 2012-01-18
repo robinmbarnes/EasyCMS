@@ -1,6 +1,6 @@
 <form id="mainform" action="">
 <ul class="folder-actions">
-    <li class="add"><a href="<?=$this->url(array(), 'admin_create_template');?>">Add new user</a></li>
+    <li class="add"><a href="<?= $this->escape($this->url(array(), 'admin_create_template'));?>">Add new user</a></li>
 </ul>
 <?php if($this->users): ?>
    
@@ -12,7 +12,7 @@
 
         <?php foreach($this->users as $user):?>
         <tr class="alternate-row">
-	        <td><?= $template->getEmail(); ?></td>
+	        <td><?= $this->escape($user->getEmail()); ?></td>
 	        <td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
         </tr>
         <?php endforeach; ?>
@@ -23,7 +23,7 @@
 <?php endif; ?>
 
 <ul class="folder-actions">
-    <li class="add"><a href="<?=$this->url(array(), 'admin_create_template');?>">Add new user</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array(), 'admin_create_template'));?>">Add new user</a></li>
 </ul>
 
 </form>

@@ -49,7 +49,17 @@ class App_Model_User
 
     public function setPassword($password)
     {
-        $this->password = crypt($password);
+        $this->password = $this->encryptPassword($password);
+    }
+
+    public function doesPasswordEqual($password)
+    {
+        return ($this->encryptPassword($password) == $this->getPassword());
+    }
+
+    private function encryptPassword($password)
+    {
+        return md5($password);
     }
 
     public function getIsSuperAdmin()
