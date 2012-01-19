@@ -51,3 +51,36 @@ function templateDescriptions(template_dropdown, template_descriptions)
         }
     );
 }
+
+(function( $ ) {
+    $.fn.ajaxDeleter = function(url_template) 
+    {
+        this.each(
+            function()
+            {
+                $(this).click(
+                    function()
+                    {
+                        var id = this.id.match(/^.*?-delete-(\d*)$/);
+                        var url = url_template.replace('xxx', id[1]);
+                        var row = $(this).parent().parent();
+                        $.ajax({
+                            url: url,
+                            success: function()
+                            {
+                                row.fadeOut();
+                            },
+                            error: function()
+                            {
+                                alert('Error deleting item');
+                            }
+                        });
+                        
+                        return false;
+                    }
+                );
+            }
+        ); 
+        return this;           
+    };
+})( jQuery );

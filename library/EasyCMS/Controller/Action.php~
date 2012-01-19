@@ -6,7 +6,7 @@ abstract class EasyCMS_Controller_Action extends Zend_Controller_Action
     private static $site_config = null;    
     private static $user = null;
 
-    public final function init()
+    public final function inits()
     {
         //If we can't load the site config, we presume that this is first run,
         //and launch setup
@@ -52,7 +52,7 @@ abstract class EasyCMS_Controller_Action extends Zend_Controller_Action
 
     public function logInUser($email, $password)
     {
-        $user = $this->getDb()->getRepository('App_Model_User')->findOneBy(array('email' => $email, 'password' => $password);
+        $user = $this->getDb()->getRepository('App_Model_User')->findOneBy(array('email' => $email, 'password' => $password));
         if($user)
         {
             self::$user = $user;

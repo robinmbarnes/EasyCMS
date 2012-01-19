@@ -31,7 +31,7 @@
 <tr class="alternate-row">
 	<td>File</td>
 	<td><?= $this->escape($file->getName()); ?></td>
-	<td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
+	<td class="options-width"><a href="#" id="file-delete-<?= $this->escape($file->getId()); ?>" title="Delete" class="icon-2 info-tooltip file-delete"></a></td>
 </tr>
 <?php endforeach; ?>
 
@@ -45,4 +45,12 @@
 
 </form>
 </div>
+<script type="text/javascript">
+    $(document).ready(
+        function()
+        {
+            $('.file-delete').ajaxDeleter(<?= json_encode($this->url(array('file_id' => 'xxx'), 'admin_delete_file')) ?>);            
+        }
+    );
+</script>
 

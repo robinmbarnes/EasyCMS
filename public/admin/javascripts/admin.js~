@@ -42,9 +42,45 @@ function templateDescriptions(template_dropdown, template_descriptions)
                 if(!template_descriptions[selected_template_id])
                 {
                     element_container.children('.description:first').remove();
+                }
+                else
+                {
                     element_container.children('.description:first .description-inner:first').text(template_descriptions[selected_template_id]);
                 }
             }
         }
     );
 }
+
+(function( $ ) {
+    $.fn.ajaxDeleter = function(url_template) 
+    {
+        this.each(
+            function()
+            {
+                $(this).click(
+                    function()
+                    {
+                        var id = this.id.match(/^.*?-delete-(\d*)$/);
+                        var url = url_template.replace('xxx', id[1]);
+                        var row = $(this).parent().parent();
+                        $.ajax({
+                            url: url,
+                            success: function()
+                            {
+                                file_row.fadeOut();
+                            },
+                            error: function()
+                            {
+                                alert('Error deleting item');
+                            }
+                        });
+                        
+                        return false;
+                    }
+                );
+            }
+        ); 
+        return this;           
+    };
+})( jQuery );

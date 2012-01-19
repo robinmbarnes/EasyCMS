@@ -2,11 +2,6 @@
 
 class Admin_FileController extends EasyCMS_Controller_Action
 {
-    public function init()
-    {
-        /* Initialize action controller here */
-    }
-
     public function createAction()
     {
         $folder = $this->getDb()->getRepository('App_Model_Folder')->find($this->getRequest()->getParam('folder_id'));        
@@ -67,4 +62,17 @@ class Admin_FileController extends EasyCMS_Controller_Action
             }
         }
     }
+
+    public function deleteAction()
+    {
+        $file = $this->getDb()->getRepository('App_Model_File')->find($this->getRequest()->getParam('file_id'));
+        if(!$file)
+        {
+            $this->getResponse()->setRawHeader('HTTP/1.0 500 Internal Server Error');
+            $this->_helper->json(array('error'=>true));
+        }
+        $this->getDb()->remove($file);
+        $this->getDb()->flush();     
+        $this->_helper->json(array('success'=>true));
+     }
 }
