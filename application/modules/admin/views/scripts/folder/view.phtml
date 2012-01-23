@@ -6,7 +6,7 @@
 	<th class="table-header-options line-left"><a href="">Options</a></th>
 </tr>
 <ul class="folder-actions">
-    <li class="add"><a href="<?=$this->escape($this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder'));?>">Add new folder</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_folder'));?>">Add new folder</a></li>
     <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_page'));?>">Add new webpage</a></li>
     <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_file'));?>">Add new media file</a></li>
 </ul>
@@ -23,7 +23,7 @@
 <tr class="alternate-row">
 	<td>Page</td>
 	<td><?= $this->escape($page->getName()); ?></td>
-	<td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
+	<td class="options-width"><a href="#" id="page-delete-<?= $this->escape($page->getId()); ?>" title="Delete" class="icon-2 info-tooltip page-delete"></a></td>
 </tr>
 <?php endforeach; ?>
 
@@ -38,7 +38,7 @@
 </table>
 
 <ul class="folder-actions">
-    <li class="add"><a href="<?=$this->escape($this->url(array('parent_id' => $this->folder->getId()), 'admin_create_folder'));?>">Add new folder</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_folder'));?>">Add new folder</a></li>
     <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_page'));?>">Add new webpage</a></li>
     <li class="add"><a href="<?=$this->escape($this->url(array('folder_id' => $this->folder->getId()), 'admin_create_file'));?>">Add new media file</a></li>
 </ul>
@@ -49,7 +49,8 @@
     $(document).ready(
         function()
         {
-            $('.file-delete').ajaxDeleter(<?= json_encode($this->url(array('file_id' => 'xxx'), 'admin_delete_file')) ?>);            
+            $('.file-delete').ajaxDeleter(<?= json_encode($this->url(array('file_id' => 'xxx'), 'admin_delete_file')) ?>);  
+            $('.page-delete').ajaxDeleter(<?= json_encode($this->url(array('page_id' => 'xxx'), 'admin_delete_page')) ?>);        
         }
     );
 </script>

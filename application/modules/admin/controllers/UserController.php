@@ -111,4 +111,17 @@ class Admin_UserController extends EasyCMS_Controller_Action
         }
     }
 
+    public function deleteAction()
+    {
+        $user = $this->getDb()->getRepository('App_Model_User')->find($this->getRequest()->getParam('user_id'));
+        if(!$user)
+        {
+            $this->getResponse()->setRawHeader('HTTP/1.0 500 Internal Server Error');
+            $this->_helper->json(array('error'=>true));
+        }
+        $this->getDb()->remove($user);
+        $this->getDb()->flush();     
+        $this->_helper->json(array('success'=>true));
+     }
+
 }

@@ -13,7 +13,7 @@ class Admin_Form_CreatePage extends Zend_Form
     public function init()
     {
         $this->setMethod('post');
-        $this->setAttrib('id', 'create-folder-form');
+        $this->setAttrib('id', 'create-page-form');
         $this->setAttrib('accept-charset', 'UTF-8');
         
         $name = new Zend_Form_Element_Text('name');

@@ -1,6 +1,6 @@
 <form id="mainform" action="">
 <ul class="folder-actions">
-    <li class="add"><a href="<?= $this->escape($this->url(array(), 'admin_create_template'));?>">Add new user</a></li>
+    <li class="add"><a href="<?= $this->escape($this->url(array(), 'admin_create_user'));?>">Add new user</a></li>
 </ul>
 <?php if($this->users): ?>
    
@@ -13,7 +13,7 @@
         <?php foreach($this->users as $user):?>
         <tr class="alternate-row">
 	        <td><?= $this->escape($user->getEmail()); ?></td>
-	        <td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
+	        <td class="options-width"><a href="#" id="user-delete-<?= $this->escape($user->getId()) ?>" title="Delete" class="icon-2 info-tooltip user-delete"></a></td>
         </tr>
         <?php endforeach; ?>
     </table>
@@ -23,8 +23,16 @@
 <?php endif; ?>
 
 <ul class="folder-actions">
-    <li class="add"><a href="<?=$this->escape($this->url(array(), 'admin_create_template'));?>">Add new user</a></li>
+    <li class="add"><a href="<?=$this->escape($this->url(array(), 'admin_create_user'));?>">Add new user</a></li>
 </ul>
 
 </form>
 </div>
+<script type="text/javascript">
+    $(document).ready(
+        function()
+        {
+            $('.user-delete').ajaxDeleter(<?= json_encode($this->url(array('user_id' => 'xxx'), 'admin_delete_user')) ?>);        
+        }
+    );
+</script>

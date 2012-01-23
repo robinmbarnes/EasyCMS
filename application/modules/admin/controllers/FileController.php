@@ -71,6 +71,7 @@ class Admin_FileController extends EasyCMS_Controller_Action
             $this->getResponse()->setRawHeader('HTTP/1.0 500 Internal Server Error');
             $this->_helper->json(array('error'=>true));
         }
+        unlink($file->getFullPath(Zend_Registry::get('media_path')));
         $this->getDb()->remove($file);
         $this->getDb()->flush();     
         $this->_helper->json(array('success'=>true));

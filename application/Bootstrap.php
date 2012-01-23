@@ -111,8 +111,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('admin_view_folder', $route);
         $route = new Zend_Controller_Router_Route('/admin/folder/', array('module'=>'admin', 'controller' => 'folder', 'action' => 'view'));
         $router->addRoute('admin_view_root_folder', $route);
-        $route = new Zend_Controller_Router_Route('/admin/folder/:parent_id/create', array('module'=>'admin', 'controller' => 'folder', 'action' => 'create'));
+        $route = new Zend_Controller_Router_Route('/admin/folder/:folder_id/create', array('module'=>'admin', 'controller' => 'folder', 'action' => 'create'));
         $router->addRoute('admin_create_folder', $route);
+        $route = new Zend_Controller_Router_Route('/admin/folder/:folder_id/delete', array('module'=>'admin', 'controller' => 'folder', 'action' => 'delete'));
+        $router->addRoute('admin_delete_folder', $route);
 
         //Template
         $route = new Zend_Controller_Router_Route('/admin/template', array('module'=>'admin', 'controller' => 'template', 'action' => 'viewAll'));
@@ -127,8 +129,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('admin_delete_file', $route); 
 
         //Page
-        $route = new Zend_Controller_Router_Route('/admin/foler/:folder_id/page/create', array('module'=>'admin', 'controller' => 'page', 'action' => 'create'));
+        $route = new Zend_Controller_Router_Route('/admin/folder/:folder_id/page/create', array('module'=>'admin', 'controller' => 'page', 'action' => 'create'));
         $router->addRoute('admin_create_page', $route);                                             
+        $route = new Zend_Controller_Router_Route('/admin/page/:page_id/delete', array('module'=>'admin', 'controller' => 'page', 'action' => 'delete'));
+        $router->addRoute('admin_delete_page', $route);                                             
 
         //Setup
         $route = new Zend_Controller_Router_Route('/setup/site-config', array('module'=>'admin', 'controller' => 'setup', 'action' => 'siteConfig'));
@@ -141,6 +145,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router->addRoute('admin_create_user', $route);                       
         $route = new Zend_Controller_Router_Route('/admin/user/edit/:user_id', array('module'=>'admin', 'controller' => 'user', 'action' => 'edit'));
         $router->addRoute('admin_edit_user', $route);                       
+        $route = new Zend_Controller_Router_Route('/admin/user/:user_id/delete', array('module'=>'admin', 'controller' => 'user', 'action' => 'delete'));
+        $router->addRoute('admin_delete_user', $route);                       
     }
     
     private function initView()

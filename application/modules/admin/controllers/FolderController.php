@@ -50,7 +50,46 @@ class Admin_FolderController extends EasyCMS_Controller_Action
             $this->addFlashMessageSuccess('Your new folder has been created successfully');   
             $this->_redirect($this->getUrl(array('folder_id'=>$folder->getId()), 'admin_view_folder'));
         }
-    }    
+    } 
+
+    public function deleteAction()
+    {
+        $folder = $this->getFolderFromParams();
+        if(!$folder)
+        {
+            return $this->folderNotFound();
+        }
+        if($folder->isRoot())
+        {
+            $this->addFlashMessageNotice('You cannot delete the root folder');
+            $this->_redirect($this->getUrl(array('folder_id'=>$folder->getId()), 'admin_view_folder'));
+        }
+        $view->folder = $folder;
+        if(!$this->getRequest()->isPost())
+        {
+            $this->view->page_heading = 'Delete folder ' . $folder->getName();
+            $this->view->items = $folder->getTotalChildCount($this->getDb());
+            return;
+        }
+        if($this->getRequest()->getParam('cancel'))
+        {
+            $this->_redirect($this->getUrl(array('folder_id'=>$folder->getParent()->getId()), 'admin_view_folder'));
+            return;
+        }
+        if($this->getRequest()->getParam('confirm'))
+        {
+            $parent = $folder->getParent();
+            $files_to_delete = $folder->getAllChildFilePaths(Zend_Registry::get('media_path'), $this->getDb());
+            $this->getDb()->remove($folder);
+            $this->getDb()->flush();
+            foreach($files_to_delete as $path)
+            {
+                @unlink($path);
+            }
+            $this->addFlashMessageSuccess('Folder deleted');
+            $this->_redirect($this->getUrl(array('folder_id'=>$parent->getId()), 'admin_view_folder'));
+        }
+    }   
 
     private function folderNotFound()
     {

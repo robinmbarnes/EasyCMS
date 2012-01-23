@@ -42,7 +42,7 @@ class App_Model_Page
     */
     private $logEntries;
 
-    public function __construct(EntityManager $db)
+    public function __construct()
     {
         $this->sections = new \Doctrine\Common\Collections\ArrayCollection(); 
         $this->logEntries = new \Doctrine\Common\Collections\ArrayCollection();       

@@ -102,6 +102,24 @@ class App_Model_FolderProxy extends \App_Model_Folder implements \Doctrine\ORM\P
         return parent::setParent($parent);
     }
 
+    public function isRoot()
+    {
+        $this->__load();
+        return parent::isRoot();
+    }
+
+    public function getTotalChildCount(\Doctrine\ORM\EntityManager $db)
+    {
+        $this->__load();
+        return parent::getTotalChildCount($db);
+    }
+
+    public function getAllChildFilePaths($base_path, \Doctrine\ORM\EntityManager $db)
+    {
+        $this->__load();
+        return parent::getAllChildFilePaths($base_path, $db);
+    }
+
 
     public function __sleep()
     {

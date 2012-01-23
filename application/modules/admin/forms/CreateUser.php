@@ -5,7 +5,7 @@ class Admin_Form_CreateUser extends Zend_Form
     public function init()
     {
         $this->setMethod('post');
-        $this->setAttrib('id', 'create-template-form');
+        $this->setAttrib('id', 'create-user-form');
         $this->setAttrib('accept-charset', 'UTF-8');
         $this->setAttrib('enctype', 'multipart/form-data');
         

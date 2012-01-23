@@ -70,7 +70,7 @@ div.form-element-wrapper textarea
     resize: none;
 }
 
-div.form-element-wrapper input[type="submit"] {
+input.confirm, input.cancel, div.form-element-wrapper input[type="submit"] {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -87,15 +87,26 @@ div.form-element-wrapper input[type="submit"] {
 	text-decoration:none;
 }
 
-div.form-element-wrapper input[type="submit"]:hover {
+input.confirm:hover, input.cancel:hover, div.form-element-wrapper input[type="submit"]:hover {
 	background-color:#b1cc58;
     cursor: pointer;
 }
 
-div.form-element-wrapper input[type="submit"]:active {
+input.confirm:active, input.cancel:active, div.form-element-wrapper input[type="submit"]:active {
 	position:relative;
 	top:1px;
     cursor: pointer;
+}
+
+input.confirm {
+    background-color: #CE2700;
+}
+
+input.confirm:hover {
+    background-color: #D85233;
+}
+
+input.confirm:active {
 }
 
 div.errors 

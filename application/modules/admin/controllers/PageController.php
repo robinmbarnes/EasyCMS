@@ -3,11 +3,6 @@
 class Admin_PageController extends EasyCMS_Controller_Action
 {
 
-    public function init()
-    {
-        /* Initialize action controller here */
-    }
-
     public function createAction()
     {
         $folder = $this->getDb()->getRepository('App_Model_Folder')->find($this->getRequest()->getParam('folder_id'));        
@@ -66,4 +61,21 @@ class Admin_PageController extends EasyCMS_Controller_Action
             }
         }
     }
+
+    public function deleteAction()
+    {
+        $page = $this->getDb()->getRepository('App_Model_Page')->find($this->getRequest()->getParam('page_id'));
+        if(!$page)
+        {
+            $this->getResponse()->setRawHeader('HTTP/1.0 500 Internal Server Error');
+            $this->_helper->json(array('error'=>true));
+        }
+        foreach($page->getSections() as $section)
+        {
+            $this->getDb()->remove($section);
+        }
+        $this->getDb()->remove($page);
+        $this->getDb()->flush();     
+        $this->_helper->json(array('success'=>true));
+     }
 }
