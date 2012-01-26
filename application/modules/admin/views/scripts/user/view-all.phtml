@@ -1,7 +1,11 @@
 <form id="mainform" action="">
+
+<?php if($this->user->getIsSuperAdmin()): ?>
 <ul class="folder-actions">
     <li class="add"><a href="<?= $this->escape($this->url(array(), 'admin_create_user'));?>">Add new user</a></li>
 </ul>
+<?php endif; ?>
+
 <?php if($this->users): ?>
    
     <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
@@ -13,7 +17,11 @@
         <?php foreach($this->users as $user):?>
         <tr class="alternate-row">
 	        <td><?= $this->escape($user->getEmail()); ?></td>
-	        <td class="options-width"><a href="#" id="user-delete-<?= $this->escape($user->getId()) ?>" title="Delete" class="icon-2 info-tooltip user-delete"></a></td>
+	        <td class="options-width">
+                <?php if($this->user->getIsSuperAdmin()): ?>
+                    <a href="#" id="user-delete-<?= $this->escape($user->getId()) ?>" title="Delete" class="icon-2 info-tooltip user-delete"></a>
+                <?php endif; ?>            
+            </td>
         </tr>
         <?php endforeach; ?>
     </table>
@@ -22,9 +30,11 @@
     <p>There are currently no users.</p>
 <?php endif; ?>
 
+<?php if($this->user->getIsSuperAdmin()): ?>
 <ul class="folder-actions">
     <li class="add"><a href="<?=$this->escape($this->url(array(), 'admin_create_user'));?>">Add new user</a></li>
 </ul>
+<?php endif; ?>
 
 </form>
 </div>

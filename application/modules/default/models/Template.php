@@ -23,7 +23,7 @@ class App_Model_Template
     private $description;
 
     /**
-    * @OneToMany(targetEntity="App_Model_Page", mappedBy="template")
+    * @OneToMany(targetEntity="App_Model_Page", mappedBy="template", cascade={"ALL"})
     */
     private $pages;
 

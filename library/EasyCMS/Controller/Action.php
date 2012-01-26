@@ -3,8 +3,8 @@
 abstract class EasyCMS_Controller_Action extends Zend_Controller_Action
 {
 
-    private static $site_config = null;    
-    private static $user = null;
+    private static $site_config = null; 
+    protected $session = null;   
 
     public final function init()
     {
@@ -18,6 +18,16 @@ abstract class EasyCMS_Controller_Action extends Zend_Controller_Action
         {
             
         }
+        $this->session = new Zend_Session_Namespace('easycmssession');
+        //Require login
+        if($this->getRequest()->getModuleName() == 'admin' 
+            && $this->getRequest()->getActionName() != 'login'
+            && !$this->getUser()
+        )
+        {
+            $this->_redirect($this->getUrl(array(), 'admin_login_user'));
+        }
+        $this->view->user = $this->getUser();
         $this->preRun();
     }
 
@@ -47,21 +57,24 @@ abstract class EasyCMS_Controller_Action extends Zend_Controller_Action
 
     public function getUser()
     {
-        return self::$user;
+        if($this->session->user)
+        {
+            return $this->session->user;
+        }
+        return null;
     }
 
-    public function logInUser($email, $password)
+    public function setUser(App_Model_User $user=null)
     {
-        $user = $this->getDb()->getRepository('App_Model_User')->findOneBy(array('email' => $email, 'password' => $password));
-        if($user)
+        if($user == null)
         {
-            self::$user = $user;
-            return false;
+            Zend_Session::destroy();//Logout
         }
         else
         {
-            return true;
-        }   
+            $this->session->user = $user;
+        }
+        
     }
 
     protected function getUrl(array $params, $route_name)

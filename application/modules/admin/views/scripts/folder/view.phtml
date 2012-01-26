@@ -14,8 +14,8 @@
 <?php foreach($this->folder->getSubFolders() as $subFolder):?>
 <tr class="alternate-row">
 	<td>Folder</td>
-	<td><?= $this->escape($subFolder->getName()); ?></td>
-	<td class="options-width"><a href="" title="Delete" class="icon-2 info-tooltip"></a></td>
+	<td><a href="<?= $this->escape($this->url(array('folder_id' => $subFolder->getId()), 'admin_view_folder'));?>"><?= $this->escape($subFolder->getName()); ?></a></td>
+	<td class="options-width"><a href="<?= $this->escape($this->url(array('folder_id' => $subFolder->getId()), 'admin_delete_folder'));?>" title="Delete" class="icon-2 info-tooltip"></a></td>
 </tr>
 <?php endforeach; ?>
 

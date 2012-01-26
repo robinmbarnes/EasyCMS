@@ -10,7 +10,7 @@ class Admin_FolderController extends EasyCMS_Controller_Action
         {
             return $this->folderNotFound();
         }
-        $this->view->page_heading = 'Contents of' . $folder->getName();
+        $this->view->page_heading = 'Contents of ' . $folder->getName();
         $this->view->folder = $folder;
     }
 

@@ -225,7 +225,7 @@ echo $this->doctype()
 			<div class="nav-divider">&nbsp;</div>
 			<div class="showhide-account"><img src="/admin/images/template/shared/nav/nav_myaccount.gif" width="93" height="14" alt="" /></div>
 			<div class="nav-divider">&nbsp;</div>
-			<a href="" id="logout"><img src="/admin/images/template/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
+			<a href="<?= $this->escape($this->url(array(), 'admin_logout_user')); ?>" id="logout"><img src="/admin/images/template/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
 			<div class="clear">&nbsp;</div>
 		
 			<!--  start account-content -->	
@@ -257,19 +257,25 @@ echo $this->doctype()
 		<div class="table">
             <ul class="select">
                 <li>
-                    <a href="#nogo"><b>Dashboard</b></a>
+                    <a href="<?= $this->escape($this->url(array(), 'admin_index')); ?>"><b>Dashboard</b></a>
                 </li>
             </ul>
             <div class="nav-divider">&nbsp;</div>
             <ul class="select">
                 <li>
-                    <a href="#nogo"><b>Folders</b></a>
+                    <a href="<?= $this->escape($this->url(array(), 'admin_view_root_folder')); ?>"><b>Webpages</b></a>
                 </li>
             </ul>
             <div class="nav-divider">&nbsp;</div>
             <ul class="select">
                 <li>
-                    <a href="#nogo"><b>Users</b></a>
+                    <a href="<?= $this->escape($this->url(array(), 'admin_view_templates')); ?>"><b>Webpage Templates</b></a>
+                </li>
+            </ul>
+            <div class="nav-divider">&nbsp;</div>
+            <ul class="select">
+                <li>
+                    <a href="<?= $this->escape($this->url(array(), 'admin_view_users')); ?>"><b>Users</b></a>
                 </li>
             </ul>
 

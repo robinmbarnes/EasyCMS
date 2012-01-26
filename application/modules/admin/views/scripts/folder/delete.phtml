@@ -1,0 +1,11 @@
+<h2 class="warning">Warning! If you delete this folder, all sub folders, media files and webpages within it will also be deleted.</h2>
+<p>The following items within this folder will be deleted:</p>
+<ul>
+    <li>Sub folders: <?= $this->escape($this->items['folder_count']); ?></li>
+    <li>Webpages: <?= $this->escape($this->items['page_count']); ?></li>
+    <li>Media files: <?= $this->escape($this->items['file_count']); ?></li>
+</ul>
+<form action="" method="post">
+    <input type="submit" name="confirm" value="Delete folder" class="confirm" />
+    <input type="submit" name="cancel" value="Cancel" class="cancel" />
+</form>

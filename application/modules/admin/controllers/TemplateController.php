@@ -48,4 +48,32 @@ class Admin_TemplateController extends EasyCMS_Controller_Action
             $this->_redirect($this->getUrl(array(), 'admin_view_templates'));
         }
     }
+
+    public function deleteAction()
+    {
+        $template = $this->getDb()->getRepository('App_Model_Template')->find($this->getRequest()->getParam('template_id'));
+        if(!$template)
+        {
+            $this->addFlashMessageError('Template does not exist');
+            $this->_redirect($this->getUrl(array(), 'admin_view_templates'));
+        }
+        $this->view->template = $template;
+        if(!$this->getRequest()->isPost())
+        {
+            $this->view->page_heading = 'Delete template ' . $template->getName();
+            return;
+        }
+        if($this->getRequest()->getParam('cancel'))
+        {
+            $this->_redirect($this->getUrl(array(), 'admin_view_templates'));
+            return;
+        }
+        if($this->getRequest()->getParam('confirm'))
+        {
+            $this->getDb()->remove($template);
+            $this->getDb()->flush();
+            $this->addFlashMessageSuccess('Template deleted');
+            $this->_redirect($this->getUrl(array(), 'admin_view_templates'));
+        }
+    }   
 }

@@ -1,0 +1,6 @@
+<h2 class="warning">Warning! If you delete this template, all of the webpages which use it will also be deleted.</h2>
+<p><?= $this->escape(count($this->template->getPages())); ?> webpage will be deleted.</p>
+<form action="" method="post">
+    <input type="submit" name="confirm" value="Delete template" class="confirm" />
+    <input type="submit" name="cancel" value="Cancel" class="cancel" />
+</form>
