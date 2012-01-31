@@ -114,6 +114,12 @@ class App_Model_Page
         return ob_get_clean();
     }
 
+    public function renderForEdit()
+    {
+        $parser = new App_Model_TemplateParser($this->getTemplate());
+        return $parser->renderForEdit($this->getSections());
+    }
+
     public function logView()
     {
         $log_entry = new App_Model_Log();

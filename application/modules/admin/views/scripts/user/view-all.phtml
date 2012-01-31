@@ -21,6 +21,9 @@
                 <?php if($this->user->getIsSuperAdmin()): ?>
                     <a href="#" id="user-delete-<?= $this->escape($user->getId()) ?>" title="Delete" class="icon-2 info-tooltip user-delete"></a>
                 <?php endif; ?>            
+                <?php if($this->user->getIsSuperAdmin() || $this->user->getId() == $user->getId()): ?>
+                    <a href="<?= $this->escape($this->url(array('user_id'=>$user->getId()), 'admin_edit_user')); ?>" id="user-edit-<?= $this->escape($user->getId()) ?>" title="Edit" class="icon-1 info-tooltip"></a>
+                <?php endif; ?>            
             </td>
         </tr>
         <?php endforeach; ?>

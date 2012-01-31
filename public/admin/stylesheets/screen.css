@@ -27,13 +27,6 @@ tr#login-error td {
     color: #ce2700;;
 }
 
-#table-content ul {
-    margin: 20px;
-}
-
-#table-content p {
-    margin-bottom: 10px;
-}
 
 /*End of General*/
 
@@ -66,7 +59,7 @@ ul.folder-actions li a
 
 ul.folder-actions li a:link 
 {
-
+    
 }
 
 ul.folder-actions li a:hover

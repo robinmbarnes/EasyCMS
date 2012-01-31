@@ -81,4 +81,13 @@ class App_Model_Section
     {
         echo $this->getContent();
     }
+
+    public function renderForEdit()
+    {
+        if(empty($this->content))
+        {
+            return $this->getDescription() . ' (This section is currently empty)';
+        }
+        return $this->content;
+    }
 }

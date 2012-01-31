@@ -41,7 +41,7 @@ class App_Model_TemplateParser
         return $sections;
     }
 
-    public function render(\Doctrine\Common\Collections\ArrayCollection $sections)
+    public function renderForEdit($sections)
     {
         $text = $this->template->getContent();
         foreach($sections as $section)
@@ -53,7 +53,7 @@ class App_Model_TemplateParser
             $css_id_name = preg_replace('/[^0-9a-zA-Z]/', '-', $section->getName());    
             $text = preg_replace(
                 '|<easy_cms_section name="'.$section->getName().'">(.+?)</easy_cms_section>|',            
-                '<div id="easy_cms_section_'.$css_id_name.'">'.$section->getContent().'</div>',
+                '<div class="easy_cms_editable_section" style="position:relative;" id="easy_cms_section_'.$css_id_name.'">'.$section->renderForEdit().'</div>',
                 $text
             );
         }

@@ -37,6 +37,10 @@ class App_Model_Routes
         $router->addRoute('admin_create_page', $route);                                             
         $route = new Zend_Controller_Router_Route('/admin/page/:page_id/delete', array('module'=>'admin', 'controller' => 'page', 'action' => 'delete'));
         $router->addRoute('admin_delete_page', $route);                                             
+        $route = new Zend_Controller_Router_Route('/admin/page/:page_id/edit', array('module'=>'admin', 'controller' => 'page', 'action' => 'edit'));
+        $router->addRoute('admin_edit_page', $route);                                             
+        $route = new Zend_Controller_Router_Route('/admin/page/:page_id/render-for-edit', array('module'=>'admin', 'controller' => 'page', 'action' => 'renderForEdit'));
+        $router->addRoute('admin_render_for_edit_page', $route);                                             
 
         //Setup
         $route = new Zend_Controller_Router_Route('/setup/site-config', array('module'=>'admin', 'controller' => 'setup', 'action' => 'siteConfig'));

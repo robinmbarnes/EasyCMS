@@ -78,4 +78,29 @@ class Admin_PageController extends EasyCMS_Controller_Action
         $this->getDb()->flush();     
         $this->_helper->json(array('success'=>true));
      }
+
+    public function editAction()
+    {
+        $page = $this->getDb()->getRepository('App_Model_Page')->find($this->getRequest()->getParam('page_id'));
+        if(!$page)
+        {
+            $this->addFlashMessageError('Page does not exist');
+            $this->_redirect($this->getUrl(array(), 'admin_view_folder'));
+        }
+        $this->_helper->layout->disableLayout();
+        $this->view->page = $page;
+    }
+
+    public function renderforeditAction()
+    {
+        //Will be viewed from within iFrame on edit page
+        $this->_helper->layout->disableLayout();
+        $page = $this->getDb()->getRepository('App_Model_Page')->find($this->getRequest()->getParam('page_id'));
+        if(!$page)
+        {
+            die();
+        }
+        echo $page->renderForEdit();
+        die();
+    }
 }
