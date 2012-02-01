@@ -1,9 +1,10 @@
 <html>
     <head>
         <script type="text/javascript" src="/admin/javascripts/jquery/jquery-1.4.1.min.js"></script>
+        <script type="text/javascript" src="/admin/javascripts/jhtml/jHtmlArea-0.7.0.min.js"></script>
         <script type="text/javascript" src="/admin/javascripts/page-editor.js"></script>
     </head>
     <body>
-        <iframe src="<?= $this->escape($this->url(array('page_id' => $this->page->getId()), 'admin_render_for_edit_page')) ?>" frameborder="0" id="editable-page-content-pane"></iframe>
+        <iframe width="500px" height="500px" src="<?= $this->escape($this->url(array('page_id' => $this->page->getId()), 'admin_render_for_edit_page')) ?>" frameborder="0" id="editable-page-content-pane"></iframe>
     </body>
 </html>

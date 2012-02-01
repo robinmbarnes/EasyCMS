@@ -44,6 +44,23 @@ class App_Model_TemplateParser
     public function renderForEdit($sections)
     {
         $text = $this->template->getContent();
+
+        //Insert editor css tag
+        if(!preg_match('|<head.*?>.*?</head>|msU', $text))
+        {
+            throw new App_Model_TemplateParserException('Missing html head tags');
+        }
+       
+        $text = preg_replace('|(<head.*?>)(.*?</head>)|msU', 
+            '$1'
+            ."\n" 
+            . '<link rel="stylesheet" media="all" type="text/css" href="/admin/stylesheets/jhtml/jHtmlArea.css" />'
+            ."\n" 
+            .'$2', 
+            $text
+        );
+
+        //Sections
         foreach($sections as $section)
         {
             if(!preg_match('|<easy_cms_section name="'.$section->getName().'">(.+?)</easy_cms_section>|', $text))
