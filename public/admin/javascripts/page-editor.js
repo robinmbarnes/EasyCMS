@@ -1,6 +1,50 @@
 $(document).ready(
     function()
     {
+        $(window).scroll(
+            function()
+            {
+                $('#editor-controls').css('top', $(document).scrollTop()+"px");
+            }
+        );
+        $('#quit-button').click(
+            function()
+            {
+                window.location.href = $('#folder-view-url').val();
+            }
+        );
+        $('#save-button').click(
+            function()
+            {
+                var post_data = {};
+                $('#editable-page-content-pane').contents().find('.easy_cms_editable_section').each(
+                    function()
+                    {
+                        var matches = $(this).id.match(/easy_cms_section_(.*)/);
+                        post_data['sections['+matches[1]+']'] = $(this).html();
+                    }
+                );
+                $.post(global_script_vars.save_url, post_data);
+            }
+        );
+        var editor_controls_hidden = false;
+        $('#show-hide-control').click(
+            function()
+            {
+                if(editor_controls_hidden)
+                {
+                    $('#main-controls').show();
+                    $('#editor-controls').css('width', '800px').css('padding-left', '10px');
+                    editor_controls_hidden = false;
+                }
+                else
+                {
+                    $('#main-controls').hide();
+                    $('#editor-controls').css('width', '80px').css('padding-left', '0');
+                    editor_controls_hidden = true;
+                }
+            }
+        );
         $('#editable-page-content-pane').load(
             function()
             {
@@ -60,7 +104,22 @@ $(document).ready(
                                                 is_in_edit_mode = false;
                                                 textarea.remove();
                                              }
-                                        }]
+                                         },
+                                        {
+                                           css: "custom_disk_button",
+                                           text: "Cancel",
+                                           action: 
+                                            function(btn) {
+                                                // 'this' = jHtmlArea object
+                                                // 'btn' = jQuery object that represents the <A> "anchor" tag for the Toolbar Button                                               
+                                                textarea.htmlarea('dispose');
+                                                editable_section.html(content);
+                                                is_in_edit_mode = false;
+                                                textarea.remove();
+                                            }
+                    
+                                        }
+                                        ]
                                     ]
                                 });                                
                                 is_in_edit_mode = true;

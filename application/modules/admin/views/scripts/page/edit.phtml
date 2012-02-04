@@ -1,10 +1,55 @@
 <html>
     <head>
+        <style type="text/css">
+            body {
+                height: 4000px;
+            }
+            #editor-controls {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 800px;
+                background-color: #5B5C5A;
+                color: white;
+                padding: 0 0 0 10px;
+                filter: alpha(opacity=60); 
+                -khtml-opacity: 0.6;
+                opacity: 0.6;
+            }
+            #main-controls {
+                float: left;
+            }
+            #show-hide-control {
+                background-color: black;
+                width: 80px;
+                height: 120px;
+                float: right;
+                z-index: 2;
+            }
+        </style>
         <script type="text/javascript" src="/admin/javascripts/jquery/jquery-1.4.1.min.js"></script>
         <script type="text/javascript" src="/admin/javascripts/jhtml/jHtmlArea-0.7.0.min.js"></script>
+        <script type="text/javascript">
+            //Set up vars to be used in external script
+            var global_script_vars = {
+                'save_url' : '<?= $this->escape($this->url(array('page_id' => $this>page->getId()), 'admin_save_page_sections'));?>'
+            };
+        </script>
         <script type="text/javascript" src="/admin/javascripts/page-editor.js"></script>
     </head>
     <body>
-        <iframe width="500px" height="500px" src="<?= $this->escape($this->url(array('page_id' => $this->page->getId()), 'admin_render_for_edit_page')) ?>" frameborder="0" id="editable-page-content-pane"></iframe>
+        <div id="editor-controls">
+            <div id="main-controls">
+                <h1>Editing page "<?= $this->escape($this->page->getName()); ?>"</h1>
+                <p>
+                    <input type="button" id="save-button" value="Save" />
+                    <input type="button" id="save-quit-button" value="Save &amp; Quit" />
+                    <input type="button" id="quit-button" value="Quit" />
+                    <input type="hidden" id="folder-view-url" value="<?= $this->escape($this->url(array('folder_id'=>$this->page->getFolder()->getId()), 'admin_view_folder')) ?>" />
+                </p>
+            </div>
+            <div id="show-hide-control">fghgf</div>
+        </div>
+        <iframe width="500px" height="500px" src="<?= $this->escape($this->url(array('page_id' => $this->page->getId()), 'admin_render_for_edit_page')) ?>" frameborder="0" id="editable-page-content-pane"></iframe>    
     </body>
 </html>

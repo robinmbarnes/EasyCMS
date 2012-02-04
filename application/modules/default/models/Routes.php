@@ -41,6 +41,8 @@ class App_Model_Routes
         $router->addRoute('admin_edit_page', $route);                                             
         $route = new Zend_Controller_Router_Route('/admin/page/:page_id/render-for-edit', array('module'=>'admin', 'controller' => 'page', 'action' => 'renderForEdit'));
         $router->addRoute('admin_render_for_edit_page', $route);                                             
+        $route = new Zend_Controller_Router_Route('/admin/page/:page_id/save-sections', array('module'=>'admin', 'controller' => 'page', 'action' => 'saveSections'));
+        $router->addRoute('admin_save_page_sections', $route);                                             
 
         //Setup
         $route = new Zend_Controller_Router_Route('/setup/site-config', array('module'=>'admin', 'controller' => 'setup', 'action' => 'siteConfig'));

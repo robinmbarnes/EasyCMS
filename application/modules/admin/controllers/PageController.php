@@ -103,4 +103,33 @@ class Admin_PageController extends EasyCMS_Controller_Action
         echo $page->renderForEdit();
         die();
     }
+
+    public function savesectionsAction()
+    {
+        $page = $this->getDb()->getRepository('App_Model_Page')->find($this->getRequest()->getParam('page_id'));
+        if(!$page)
+        {
+            $this->getResponse()->setRawHeader('HTTP/1.0 500 Internal Server Error');
+            $this->_helper->json(array('error'=>true));
+        }
+        $sections = $this->getRequest()->getParam('sections');
+        if(!is_array($sections))
+        {
+            $this->getResponse()->setRawHeader('HTTP/1.0 500 Internal Server Error');
+            $this->_helper->json(array('error'=>true));
+        }               
+        foreach($sections as $section_name=>$section_content)
+        {
+            if($section = $page->getSectionByName($sectionName))
+            {
+                if($section_content != $section->getPlaceholder())
+                {
+                    $section->setContent($section_content);
+                    $this->getDb()->persist($section);
+                }
+            }
+        }
+        $this->getDb()->flush();
+        $this->_helper->json(array('success'=>true));
+    }
 }

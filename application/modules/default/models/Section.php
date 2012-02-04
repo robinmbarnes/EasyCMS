@@ -77,6 +77,11 @@ class App_Model_Section
         $this->content = $content;
     }
 
+    public function getPlaceholder()
+    {
+        return $this->getDescription() . ' (This section is currently empty)';
+    }
+
     public function render()
     {
         echo $this->getContent();
@@ -86,7 +91,7 @@ class App_Model_Section
     {
         if(empty($this->content))
         {
-            return $this->getDescription() . ' (This section is currently empty)';
+            return $this->getPlaceholder();    
         }
         return $this->content;
     }
